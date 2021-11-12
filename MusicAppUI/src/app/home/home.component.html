@@ -1,0 +1,138 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <img alt="" src="assets/img/logo.png" style="height: 35px; margin-right: 10px;">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button><span><i class="fas fa-bars"></i></span></button>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" (click)="onHome()">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories<span><i class="fas fa-caret-down"></i></span>
+          </a>
+          <ul
+            class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let cat of this.categoryList">
+            <a (click)="this.catSearch=cat.Id" class="dropdown-item">{{cat.name}}</a>
+        </li>
+          </ul>
+      </ul>
+
+
+     <ul class="navbar-nav ml-auto">
+       <div class="search">
+         <input type="text" [(ngModel)]="search" placeholder="Discover your type">
+         <span><i class="fas fa-search"></i></span>
+       </div><br>
+       <button (click)="onLogout()" class="btn">Logout</button>
+     </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <section id="main">
+    <h1 class="firstHeader pt-2" style="color: white;">Discover new songs
+        <span><button *ngIf="this.currentUser.Email==='admin@gmail.com'" class="btn pull-right" routerLink="/song">Add New Song<span><i class="fas fa-plus"></i></span></button></span>
+    </h1>
+    <hr>
+    <div class="container">
+      <div class="row g-3">
+        <div class="col-sm-12 col-md-6 col-lg-2" *ngFor="let song of this.songList
+        | filter: search
+        | filterByCategory: catSearch
+        | paginate: {itemsPerPage: 18, currentPage: page, totalItems: totalLength}">
+          <div class="card">
+            <div class="embed-responsive embed-responsive-16by9">
+              <p style="font-style: italic;">{{this.getSongCategory(song.Id)}}</p>
+              <img [src]="this.song.imageCurrent" class="card-img-top img-fluid">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{song.name}}</h5>
+              <p class="card-text" style="font-size: 1.2rem">{{song.artistName}}</p>
+              <p class="card-text">Rating: {{song.rating}}</p>
+              <p class="card-text">{{song.dateOfAdding | date}}</p>
+              <p hidden class="card-text">{{song.songUrl</p>
+              <div class="text-center">
+                <button (click)="openDetails(content,song)" class="btn btn-sm btnMore">More</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="this.songList.length===0">
+        <p>No songs available yet!</p>
+      </div>
+    </div>
+
+    <pagination-controls class="text-center my-pagination" (pageChange)="page=$event"></pagination-controls>
+  </section>
+</div>
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 style="color: hotpink;" class="modal-title" id="modal-basic-title"></h4>
+    <button type="button" class="close px-2" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 col-sm-12">
+            <img id="image" [src]="">
+          </div>
+          <div class="col-sm-12 col-lg-5 offset-2">
+            <div class="form-group">
+              <label for="artistName">Name of artist</label>
+              <h5 id="artistName"></h5>
+            </div>
+            <div class="form-group">
+              <label for="songUrl">Url of the song</label>
+              <p id="songUrl"></p>
+            </div>
+            <div class="form-group">
+              <label>Date of adding</label>
+              <h5 id="dateOfAdding"></h5>
+            </div>
+            <div class="form-group">
+              <label>Genre</label>
+              <h5 id="categoryId"></h5>
+            </div>
+            <div class="row col-8 form-group">
+              <label>Rate this song!</label>
+              <select *ngIf="this.currentUser.Email!=='admin@gmail.com'" id="rate">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+<div class="row offset-6" *ngIf="this.currentUser.Email==='admin@gmail.com'">
+  <button class="btn btn-success col-2" (click)="modal.close(); onEdit()" >Edit<span><i class="fas fa-edit" style="color: blue;"></i></span></button>
+  <button class="btn btn-danger col-2" (click)="onDelete();">Delete<span><i class="fas fa-trash-alt" style="color: darkred"></i></span></button>
+
+</div>
+
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+

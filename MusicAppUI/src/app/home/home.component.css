@@ -1,0 +1,160 @@
+body{
+  margin:0px;
+  padding:0px;
+  font-family: poppins;
+
+}
+
+ul{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  border: 1px solid rgba(0,0,0,0.04);
+  background-color: #ffffff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+button i{
+  padding: 3px;
+}
+nav li a{
+  height: 40px;
+  line-height: 43px;
+  margin: 5px;
+  padding: 0px 22px;
+  display: flex;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #585858;
+  letter-spacing: 1px;
+}
+
+nav li a:hover{
+  background-color: hotpink;
+  cursor: pointer;
+}
+
+.search{
+  width: 250px;
+  height: 40px;
+  background-color: rgba(245,245,255,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 0px 20px;
+}
+
+.search input{
+  width: 100%;
+  height: 30px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.search i{
+  color: #3a3a3a;
+}
+
+
+#main{
+  padding-top: 80px;
+  background-color: #DB7093;
+}
+
+
+.firstHeader{
+  padding-left: 30px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: #1a1a1a;
+}
+ .cs-hidden{
+   overflow: visible !important;
+ }
+
+.btn{
+  background-color: hotpink;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn:hover{
+  background-color: deeppink;
+}
+
+.card{
+  display: block;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.card-text{
+  font-style: italic;
+  justify-content: center;
+  text-align: center;
+}
+.embed-responsive .card-img-top {
+  object-fit: cover;
+}
+.card-title{
+  justify-content: center;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.card-body {
+  justify-content: center;
+  align-items: center;
+}
+
+.card-img-top{
+height: 100px;
+}
+
+.my-pagination /deep/ .ngx-pagination .current{
+background-color: deeppink;
+  margin-top: 15px;
+}
+
+.modal-body input{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-body img{
+  height: 350px;
+  width: 300px;
+}
+
+.modal-body h5{
+  padding: 10px;
+}
+
+.modal-body label{
+  color: hotpink;
+  font-size: 1rem;
+}
+
+.button i{
+  padding: 3px;
+}

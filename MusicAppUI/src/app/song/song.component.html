@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <img alt="" src="assets/img/logo.png" style="height: 35px; margin-right: 10px" >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button><span><i class="fas fa-bars"></i></span></button>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <button class="btnHeader" aria-current="page" (click)="onHome()">Home</button>
+        </li>
+
+          </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <button (click)="onLogout()" class="btnHeader">Logout</button>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <form class="newSongForm col-5 offset-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Name of song</label>
+        <input type="text" class="form-control" formControlName="name">
+        <span
+          class="help-block" style="color: darkred;" *ngIf="this.form.get('name').errors?.required &&
+      this.form.get('name').touched">
+      This field is required!
+    </span>
+      </div>
+      <div class="form-group">
+        <label>Name of artist</label>
+        <input type="text" class="form-control" formControlName="artistName">
+        <span
+          class="help-block" style="color: darkred;" *ngIf="this.form.get('artistName').errors?.required &&
+      this.form.get('artistName').touched">
+      This field is required!
+    </span>
+      </div>
+      <div class="form-group">
+        <label>Song URL</label>
+        <input type="text" class="form-control" formControlName="songUrl">
+        <span
+          class="help-block" style="color: darkred;" *ngIf="this.form.get('songUrl').errors?.required &&
+      this.form.get('songUrl').touched">
+      This field is required!
+    </span>
+      </div>
+      <div class="form-group">
+        <label>Song genre</label>
+        <select class="form-select" aria-label="Default select example" formControlName="categoryId">
+          <option *ngFor="let s of this.categoryList" [value]="s.Id">{{s.name}}</option>
+        </select>
+        <span
+          class="help-block" style="color: darkred;" *ngIf="this.form.get('categoryId').errors?.required &&
+      this.form.get('categoryId').touched">
+      This field is required!
+    </span>
+      </div>
+      <div class="form-group">
+        <label>Song thumbnail</label>
+        <input type="file" name="imageCurrent" class="form-control" (change)="onImageUpload($event)">
+        <img [src]="url" class="" style="height: 200px;">
+      </div>
+      <div class="form-group text-center">
+        <button class="btn p-1 m-3" type="submit" [disabled]="!form.valid" style="width: 200px; background-color: hotpink;">Save song</button>
+      </div>
+
+    </form>
+
+  </div>
+  <p>Required fileds <span style="color: darkred;">*</span></p>
+
+</div>

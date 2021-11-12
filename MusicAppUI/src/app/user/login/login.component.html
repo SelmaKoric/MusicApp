@@ -1,0 +1,17 @@
+<img src="/assets/img/headphones.jpg" class="offset-2 py-3" style="width: 70%">
+<form class="mb-4" (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <div class="form-group">
+    <label>Username</label>
+    <input class="form-control" name="UserName" ngModel required>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" class="form-control" ngModel name="password" required>
+  </div>
+  <p *ngIf="errorLogin!==''" style="color: whitesmoke;">{{errorLogin}}</p>
+  <div class="form-row pt-3">
+    <div class="form-group col-md-8 offset-md-4">
+      <button type="submit" class="btn btn-lg" [disabled]="form.invalid">Sign In</button>
+    </div>
+  </div>
+</form>

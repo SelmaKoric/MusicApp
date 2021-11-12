@@ -1,0 +1,55 @@
+.newSongForm input, select{
+padding: 10px;
+  background-color: white;
+  margin: 5px;
+  border-color: white white black white;
+  color: black;
+}
+
+.newSongForm label{
+  color: hotpink;
+  font-size: 0.9rem;
+}
+
+.newSongForm{
+  padding-top: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.container{
+  background-color: white;
+  margin-top: 100px;
+}
+
+.btnHeader{
+  background-color: hotpink;
+  color: white;
+  border-radius: 0;
+  width: 100px;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 5px 10px 30px rgba(53,53,53,0.1);
+  transition: all ease 0.2s;
+  border: transparent;
+}
+
+nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  border: 1px solid rgba(0,0,0,0.04);
+  background-color: #ffffff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+
+}
+
+label:after{
+  content:'*';
+  color: darkred;
+  padding-left: 5px;
+}
